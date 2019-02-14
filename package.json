@@ -1,0 +1,33 @@
+{
+  "name": "simple-tic-tac-toe-nodejs",
+  "version": "1.0.0",
+  "description": "A very simple socket game",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osayfun/simple-tic-tac-toe-nodejs.git"
+  },
+  "author": "Omid Seyfan <omiid.ir>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/osayfun/simple-tic-tac-toe-nodejs/issues"
+  },
+  "homepage": "https://github.com/osayfun/simple-tic-tac-toe-nodejs#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "hbs": "^4.0.1",
+    "http": "0.0.0",
+    "mongoose": "^5.4.12",
+    "morgan": "^1.9.1",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0"
+  }
+}
