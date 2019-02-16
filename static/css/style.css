@@ -5,8 +5,8 @@
 body{
   font-family: 'Montserrat'
 }
-#loginSection, #mainSection{
-  margin-top: 4rem;
+#loginSection, #mainSection, #preGameSection{
+  margin-top: 6rem;
 }
 #login .alert{
   display: none;
@@ -24,10 +24,22 @@ ul.online{
 #stats td{
   padding: .6rem;
 }
+#preGameSection .waiting, #preGameSection .choosing{
+  display: none;
+}
+#preGameSection .choosing tbody tr{
+  cursor: pointer;
+}
 
 @media (max-width: 700px) {
   .sidebar{
     display: none;
+  }
+  #preGameSection .waiting h1, #preGameSection .choosing h2{
+    font-size: 1.5rem;
+  }
+  #preGameSection .waiting h2{
+    font-size: 1rem;
   }
   #mainSection .new{
     margin-bottom: 8rem;

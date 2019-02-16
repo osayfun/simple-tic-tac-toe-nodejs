@@ -59,12 +59,31 @@
             </div>
             <div class="col-12 col-xl-5 new">
               <h4 class="text-center"> Start New Game </h4>
-              <button type="button" class="btn btn-outline-dark btn-block mt-5">Wait for opponent</button>
-              <button type="button" class="btn btn-outline-info btn-block mt-5">Choose opponent</button>
+              <button type="button" class="btn btn-outline-dark btn-block mt-5 waitTrigger">Wait for opponent</button>
+              <button type="button" class="btn btn-outline-info btn-block mt-5 chooseTrigger">Choose opponent</button>
             </div>
           </div>
         </div>
         <div class="col-xl-2"></div>
+      </div>
+      <div class="row justify-content-md-center" id="preGameSection">
+        <div class="col-12 waiting">
+          <h1 class="text-center"> Waiting For Opponent... </h1>
+          <h2 class="text-center"> Ask your friend to choose you </h2>
+        </div>
+        <div class="col-12 col-xl-10 choosing">
+          <h2> Choose your opponent </h2>
+          <table class="table text-center table-striped available">
+            <thead>
+              <tr>
+                <th> Name </th>
+                <th> Username </th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
