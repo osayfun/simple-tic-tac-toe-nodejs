@@ -1,7 +1,8 @@
-var Users     = require('../models/user');
-var LoginLog  = require('../models/loginLog');
-var Games     = require('../models/game');
-var cookieParser = require('cookie-parser');
+var Users         = require('../models/user');
+var LoginLog      = require('../models/loginLog');
+var Games         = require('../models/game');
+var cookieParser  = require('cookie-parser');
+var winAlgorithm  = require('./game');
 
 module.exports = (io) => {
   io.on('connection', (socket) => {
@@ -49,6 +50,64 @@ module.exports = (io) => {
       }
       socket.emit('listAvailable', totalAvailable);
     })
+
+    socket.on('move', (data, cb) => {
+      if( socket.move ){
+
+        Games.findOne({'_id': data.game}, (err, game) => {
+          if( err ){
+
+            cb({success: false});
+          }else{
+            if( game ){
+
+              var position  = "opp" + data.position;
+              var me        = game[position];
+              if( socket.userid = me.toString() ){
+
+                
+              }else{
+                cb({success: false});
+              }
+            }else{
+              cb({success: false});
+            }
+          }
+        })
+      }else{
+        cb({success: false});
+      }
+    })
+    // Start Game
+    socket.on('startGame', (data) => {
+      var newGame = new Games({
+        opp1: socket.userid,
+        opp2: io.sockets.sockets[data.opponent].userid,
+      });
+      newGame.save((err) => {
+        if( err ){
+
+          // emit error
+        }else{
+          io.sockets.sockets[data.opponent].gameid    = newGame._id.toString();
+          io.sockets.sockets[data.opponent].available = 0;
+          io.sockets.sockets[data.opponent].mark      = 1;
+          io.sockets.sockets[data.opponent].move      = false;
+          io.sockets.sockets[data.opponent].pattern   = [ 0, 0, 0,
+                                                          0, 0, 0,
+                                                          0, 0, 0];
+          socket.gameid     = newGame._id.toString();
+          socket.mark       = 0;
+          socket.available  = 0;
+          socket.move       = true;
+          socket.pattern    = [ 0, 0, 0,
+                                0, 0, 0,
+                                0, 0, 0];
+          socket.emit('gameStat', {game: newGame._id.toString(), position: 1});
+          io.sockets.sockets[data.opponent].emit('gameStat', {game: newGame._id.toString(), position: 2});
+        }
+      })
+    })
     // Bots Login
     socket.on('login', (data) => {
       socket.username   = data.username;
@@ -62,7 +121,6 @@ module.exports = (io) => {
     socket.on('disconnect', () => {
       io.sockets.emit('offCon', socket.userid);
       io.sockets.emit('offAvailable', socket.userid);
-      console.log('dis');
       socket.emit('offClean', {do: true});
     })
   })

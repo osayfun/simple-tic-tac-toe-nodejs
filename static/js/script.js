@@ -7,7 +7,7 @@ function triggerAlert(message){
 }
 
 $(document).ready(function() {
-  var socket = io.connect('http://192.168.1.6:9595');
+  var socket = io.connect('http://172.20.10.3:9595');
 
   socket.on('onlines', (data) => {
     for( var i in data ){
@@ -42,6 +42,10 @@ $(document).ready(function() {
     }
   })
 
+  socket.on('hey', (data) => {
+    alert(data.mark);
+  })
+
   $('.waitTrigger').on('click', (e) => {
     socket.emit('setAvailable');
     $('#mainSection').fadeOut(400, () => {
@@ -56,6 +60,23 @@ $(document).ready(function() {
     })
   })
   $(document).on('click', '.available .starter', function(){
-    console.log($(this).data('socket'));
+    socket.emit('startGame', {opponent: $(this).data('socket')});
+    $('#preGameSection').fadeOut(400, () => {
+      $('#gameSection').fadeIn();
+    })
+  });
+  $(document).on('click', '.gameBoard .button', function(){
+    if( $(this).hasClass('done') ){
+
+      console.log("Sorry");
+    }else{
+      socket.emit('move', {position: $('#gameSection #position').val(), position: $('#gameSection #position').val(), box: $(this).data('num')}, (data) => {
+        if( data.success ){
+
+        }else{
+
+        }
+      })
+    }
   });
 })

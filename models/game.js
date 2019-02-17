@@ -20,19 +20,19 @@ var modelSchema = Schema({
   },
   duration: {
     type: Number,
-    required: true,
+    required: false,
   },
   opp1Pattern: {
-    type: Number,
-    required: true,
+    type: String,
+    required: false,
   },
   opp2Pattern: {
-    type: Number,
-    required: true,
+    type: String,
+    required: false,
   },
   result: {
     type: Number, // -1, 0, 1
-    required: true,
+    required: false,
   },
 });
 

@@ -30,6 +30,26 @@ ul.online{
 #preGameSection .choosing tbody tr{
   cursor: pointer;
 }
+#gameSection h4{
+  width: 100%;
+}
+#gameSection .gameBoard td{
+  min-height: 10vw;
+  min-width: 10vw;
+  background-color: #ebebeb;
+  display: inline-block;
+  margin: 2px;
+  cursor: pointer;
+  font-size: 60pt;
+  line-height: 10vw;
+  text-align: center;
+}
+#gameSection .gameBoard td.done{
+  cursor: no-drop;
+}
+#mainSection{
+  /* display: none; */
+}
 
 @media (max-width: 700px) {
   .sidebar{

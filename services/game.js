@@ -1,6 +1,6 @@
 var methods = {};
 
-methods.checkWin(opp1, opp2, n){
+methods.checkWin = function(opp1, opp2, n){
   var result = 0;
   // Row Win
   var rowSelector = 0;
@@ -122,7 +122,7 @@ methods.checkWin(opp1, opp2, n){
   return result;
 }
 
-methods.checkFull(opp1, opp2, n){
+methods.checkFull = function(opp1, opp2, n){
   var sum = opp1.map((value, index) => {
     return value + opp2[index];
   })
@@ -140,7 +140,7 @@ methods.checkFull(opp1, opp2, n){
   }
 }
 
-methods.checkFinished(opp1, opp2, n, cb){
+methods.checkFinished = function(opp1, opp2, n, cb){
   var finished  = this.checkFull(opp1, opp2, n);
   var result    = this.checkWin(opp1, opp2, n);
 
